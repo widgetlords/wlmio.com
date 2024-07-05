@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFCFJVXSX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KFCFJVXSX5');
+</script>
+
+
+    <title>WL-MIO AN-30400</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../main.css">
+	<link rel="icon" href="../images/wl-logo-small.jpg" type="image/x-icon" sizes="16x16" />
+  </head>
+
+<a name="top"></a>
+
+<body>
+<div class="container banner text-center">
+		<h5>WL-MIO Multipurpose I/O Process Controller</h5>
+</div>
+
+<div class="container">
+	<nav class="navbar navbar-expand-lg">
+		<img src="../images/wl-logo-transparent.png"  width="160" height="160" class="img-fluid">
+ 
+		<button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation"> 
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="main-navigation">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="../index.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../description.html">Description</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../configuration.html">Configuration</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../specs.html">Specs</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../applications.html">Applications</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="../about.html">About Us</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+</div>
+
+	<div class="container">
+		<h3 class="text-center">Application Note: WL-MIO-AN-30400</h3>
+		<hr>
+<!-- 		<h4>WL-MIO Introduction 	</h4>  -->
+		<!-- h4>Part No.: VPE-6010-C</h4> -->
+		<h1 class="text-center">WL-MIO OpenPLC Application Tutorial</h1>
+		<br>
+
+		<img src="../images/wl-mio-front-2048.png" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width=40%" height="auto" /> 
+		<br>
+
+		<h2>Overview</h2>
+		<p>Since OpenPLC does not have native support for the WL-MIO hardware a Modbus TCP gateway will be used. OpenPLC applications will interact with this gateway via Modbus to read and write I/O points. To install the gateway see the Application Note <a href="wlmioan30200.html">WL-MIO-AN-30200 </a></p>
+
+		<h2>Requirements</h2>
+		<p>1. OpenPLC IDE </p>
+		<p>2. WL-MIO system with a VPE-6040 Analog Input Module with ID 2 and a VPE-6030 Relay Output Module with ID 3. </p>
+		<p>3. Raspberry Pi with OpenPLC runtime installed and running.  <p>
+		<p>4. Modbus TCP gateway installed and running. <p>
+
+		<h2>Step 1</h2>
+		<p>Login to the OpenPLC runtime running on the Rasbperry Pi. </p>	
+
+		<h2>Step 2</h2>
+		<p>Go to the “Slave Devices” page.  </p>	
+
+		<h2>Step 3</h2>
+		<p>Add a new device and configure to match the screenshot.  </p>	
+		<img src="../images/applications/openplc_screenshot1.png" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width=100%" height="auto" /> 
+		<br>
+
+		<h2>Step 4</h2>
+		<p>Add a new device and configure to match the screenshot.  </p>	
+		<img src="../images/applications/openplc_screenshot2.png" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width=100%" height="auto" /> 
+		<br>
+
+		<h2>Step 5</h2>
+		<p>The result should look like this. </p>	
+		<img src="../images/applications/openplc_screenshot3.png" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width=100%" height="auto" /> 
+		<br>
+
+		<h2>Step 6</h2>
+		<p>Go to “Settings” and change the “Modbus Server Port” to something other than 502 to prevent conflicts with the Modbus TCP gateway. </p>	
+		<br>
+
+		<h2>Step 7</h2>
+		<p>Download the <a href="../images/applications/rpitest.zip">rpitest.zip</a> sample project and extract it somewhere. </p>	
+		<br>
+
+		<h2>Step 8</h2>
+		<P>Start the OpenPLC IDE and open the sample project. </P>
+		<br>
+
+		<h2>Step 9</h2>
+		<p> Click “Generate program for OpenPLC Runtime”. It is the orange down arrow in the toolbar.  </p>	
+		<br>
+
+		<h2>Step 10</h2>
+		<p>Save the generated file and upload it to the runtime through the web interface. This can be done by clicking on “Programs” on the left side. </p>	
+		<br>
+
+		<h2>Step 11</h2>
+		<p>Once the program is loaded click “Start PLC” on the left side.  </p>	
+		<br>
+
+		<h2>Step 12</h2>
+		<p>Apply more than 2.5V to the first channel of the VPE-6040 module with id 2 and the first relay should turn on.  </p>	
+		<br>
+
+
+
+
+	<a href="#top">Back to Top</a>
+	</div>
+
+	<footer class="page-footer">
+		<div class="container">
+			<hr>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+					<a href="https://www.widgetlords.com">www.widgetlords.com</a>
+					<br>
+					<a href="https://www.vpprocess.com">www.vpprocess.com</a>
+					<br>
+					<a href="mailto:info@widgetlords.com">Contact Us</a>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12" >
+					<img src="../images/wl-logo-small.png" class="rounded mx-auto d-block" width="100" height="100" >
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Widgetlords Electronics</h6>
+					<p>VP Process Inc.
+					<br/>West Kelowna, BC, Canada
+					<br/>info@widgetlords.com
+					<br/>1-250-769-8220
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright text-center">© 2020 Copyright: VP Process Inc.</div>
+	</footer>
+
+<script src="../jquery-3.3.1.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>

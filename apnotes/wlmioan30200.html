@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFCFJVXSX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KFCFJVXSX5');
+</script>
+
+
+    <title>WL-MIO AN-30200</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../main.css">
+	<link rel="icon" href="../images/wl-logo-small.jpg" type="image/x-icon" sizes="16x16" />
+  </head>
+
+<a name="top"></a>
+
+<body>
+<div class="container banner text-center">
+		<h5>WL-MIO Multipurpose I/O Process Controller</h5>
+</div>
+
+<div class="container">
+	<nav class="navbar navbar-expand-lg">
+		<img src="../images/wl-logo-transparent.png"  width="160" height="160" class="img-fluid">
+ 
+		<button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation"> 
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="main-navigation">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="../index.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../description.html">Description</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../configuration.html">Configuration</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../specs.html">Specs</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../applications.html">Applications</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="../about.html">About Us</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+</div>
+
+	<div class="container">
+		<h3 class="text-center">Application Note: WL-MIO-AN-30200</h3>
+		<hr>
+<!-- 		<h4>WL-MIO Introduction 	</h4>  -->
+		<!-- h4>Part No.: VPE-6010-C</h4> -->
+		<h1 class="text-center">WL-MIO Modbus TCP Gateway</h1>
+		<br>
+
+		<img src="../images/wl-mio-front-2048.png" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width=40%" height="auto" /> 
+		<br>
+
+		<p>The WL-MIO Modbus TCP Gateway software allows any program such as CODESYS, OpenPLC, etc. to access the WL-MIO process controller and have read/write privileges to all modules within the WL-MIO system. This allows any existing PLC or control network with Modbus capability to take full advantage of what the WL-MIO has to offer.</p>
+
+
+
+		<p>This application note describes how to install the WL-MIO Modbus TCP-IP Gateway software.</p>
+
+		<h2>Step 1</h2>
+		<p>Ensure libwlmio is installed and configured as shown in the application note: <a href="wlmioan30000.html">WL-MIO AN-30000 </a> </p>	
+
+		<h2>Step 2</h2>
+		<p>Download the wlmiomb program.</p>	
+		<p>For 32 bit applications, download the following:</p>
+		<pre>wget https://github.com/widgetlords/wlmiomb/releases/download/v1.1.0/wlmiomb</pre>
+
+		<p>For 64 bit applications, download the following:</p>
+		<pre>wget https://github.com/widgetlords/wlmiomb/releases/download/v1.1.0/wlmiomb_arm64.zip</pre>
+
+		<h2>Step 3</h2>
+		<p>Download the wlmiomb.sh script. </p>	
+		<pre>wget https://raw.githubusercontent.com/widgetlords/wlmiomb/master/wlmiomb.sh</pre>
+
+		<h2>Step 4</h2>
+		<p>Make sure the two files are in the same directory.  </p>	
+
+		<h2>Step 5</h2>
+		<p>Run: </p>	
+		<pre>chmod +x wlmiomb{,.sh}</pre>
+
+		<h2>Step 6</h2>
+		<p>The wlmiomb.sh script does some initial steps before starting the Modbus gateway (wlmiomb). Run it with  </p>	
+		<pre>./wlmiomb.sh</pre>
+		<p>to start the gateway. </p>
+
+		<h2>Step 7</h2>
+		<p> <strong>Optional</strong> The default port is 502 but this can be changed by passing the port to wlmiomb.sh:  </p>	
+		<pre>./wlmiomb.sh 3333</pre>
+
+	<a href="#top">Back to Top</a>
+	</div>
+
+	<div class="container">
+		<h1 class="text-center">WL-MIO Modbus Holding Register Map</h1>
+		<br>
+		<p><strong>NOTE: </strong>Unit ID directly corresponds to node ID.<br>
+		Register numbers are zero-indexed in decimal.<p>
+
+		<h4>Modbus Functions and Register List</h4>
+		<table class="table table-sm table-responsive table-striped table-hover">
+  			<thead>
+    			<tr> <th scope="col">Function</th> <th scope="col">Description</th> </tr>
+  			</thead>
+  			<tbody>
+    			<tr> <td>Function 03</td> <td>Read Holding Registers</td> </tr>
+    			<tr> <td>Function 06</td> <td>Write Single Holding Register</td> </tr>
+    			<tr> <td>Function 16</td> <td>Write Multiple Holding Registers</td> </tr>
+			</tbody>
+		</table>
+
+		<h2>The following Registers are common to all modules</h2>
+		<table class="table table-sm table-responsive table-striped table-hover">
+  			<thead>
+    			<tr> <th scope="col">Address (Dec)</th> <th scope="col">Description</th> </tr>
+  			</thead>
+  			<tbody>
+    			<tr> <td>0000</td> <td>Module uptime low word</td> </tr>
+    			<tr> <td>0001</td> <td>Module uptime high word</td> </tr>
+    			<tr> <td>0002</td> <td>Module health</td> </tr>
+    			<tr> <td>0003</td> <td>Module mode</td> </tr>
+    			<tr> <td>0004</td> <td>Module status flags</td> </tr>
+    			<tr> <td>0005</td> <td>UAVCAN protocol version (low byte = major, high byte = minor)</td> </tr>
+    			<tr> <td>0006</td> <td>Hardware version (low byte = major, high byte = minor)</td> </tr>
+    			<tr> <td>0007</td> <td>Software version (low byte = major, high byte = minor)</td> </tr>
+
+    			<tr> <td>0008</td> <td>Software VCS revision ID (1st/low word)</td> </tr>
+    			<tr> <td>0009</td> <td>Software VCS revision ID (2nd word)</td> </tr>
+    			<tr> <td>0010</td> <td>Software VCS revision ID (3rd word)</td> </tr>
+    			<tr> <td>0011</td> <td>Software VCS revision ID (4th/high word)</td> </tr>
+    			<tr> <td>0012</td> <td>Module UUID (1st/low word)</td> </tr>
+    			<tr> <td>0013</td> <td>Module UUID (2nd/word)</td> </tr>
+    			<tr> <td>0014</td> <td>Module UUID (3rd/word)</td> </tr>
+    			<tr> <td>0015</td> <td>Module UUID (4th/word)</td> </tr>
+     			<tr> <td>0016</td> <td>Module UUID (5th/word)</td> </tr>
+     			<tr> <td>0017</td> <td>Module UUID (6th/word)</td> </tr>
+     			<tr> <td>0018</td> <td>Module UUID (7th/word)</td> </tr>
+     			<tr> <td>0019</td> <td>Module UUID (6th/high word)</td> </tr>
+  
+     			<tr> <td>0020</td> <td>Module Name (1st word) Low byte is first character, high byte is second</td> </tr>
+      			<tr> <td>0021</td> <td>Module Name (2nd word) </td> </tr>
+      			<tr> <td>0022</td> <td>Module Name (3rd word) </td> </tr>
+      			<tr> <td>0023</td> <td>Module Name (4th word) </td> </tr>
+      			<tr> <td>0024</td> <td>Module Name (5th word) </td> </tr>
+      			<tr> <td>0025</td> <td>Module Name (6th word) </td> </tr>
+      			<tr> <td>0026</td> <td>Module Name (7th word) </td> </tr>
+      			<tr> <td>0027</td> <td>Module Name (8th word) </td> </tr>
+      			<tr> <td>0028</td> <td>Module Name (9th word) </td> </tr>
+      			<tr> <td>0029</td> <td>Module Name (10th word) </td> </tr>
+      			<tr> <td>0030</td> <td>Module Name (11th word) </td> </tr>
+      			<tr> <td>0031</td> <td>Module Name (12th word) </td> </tr>
+      			<tr> <td>0032</td> <td>Module Name (13th word) </td> </tr>
+      			<tr> <td>0033</td> <td>Module Name (14th word) </td> </tr>
+      			<tr> <td>0034</td> <td>Module Name (15th word) </td> </tr>
+      			<tr> <td>0035</td> <td>Module Name (16th word) </td> </tr>
+      			<tr> <td>0036</td> <td>Module Name (17th word) </td> </tr>
+      			<tr> <td>0037</td> <td>Module Name (18th word) </td> </tr>
+      			<tr> <td>0038</td> <td>Module Name (19th word) </td> </tr>
+      			<tr> <td>0039</td> <td>Module Name (20th word) </td> </tr>
+      			<tr> <td>0040</td> <td>Module Name (21th word) </td> </tr>
+      			<tr> <td>0041</td> <td>Module Name (22th word) </td> </tr>
+      			<tr> <td>0042</td> <td>Module Name (23th word) </td> </tr>
+      			<tr> <td>0043</td> <td>Module Name (24th word) </td> </tr>
+      			<tr> <td>0044</td> <td>Module Name (25th word) </td> </tr>
+
+     			<tr> <td>0045</td> <td>Software CRC (1st/low word) </td> </tr>
+     			<tr> <td>0046</td> <td>Software CRC (2nd word) </td> </tr>
+     			<tr> <td>0047</td> <td>Software CRC (3rd word) </td> </tr>
+     			<tr> <td>0048</td> <td>Software CRC (4th/high word) </td> </tr>
+ 			</tbody>
+		</table>
+	<a href="#top">Back to Top</a>
+	<hr>
+		<h2>VPE-6010 Power Supply</h2>
+		<table class="table table-sm table-responsive table-striped table-hover">
+  			<thead>
+    			<tr> <th scope="col">Address (Dec)</th> <th scope="col">Description</th> </tr>
+  			</thead>
+  			<tbody>
+    			<tr> <td>0049</td> <td>Sample interval in milliseconds</td> </tr>
+    			<tr> <td>0050</td> <td>5V rail current draw in mA</td> </tr>
+    			<tr> <td>0051</td> <td>5V rail voltage in mV</td> </tr>
+    			<tr> <td>0052</td> <td>24V rail input voltage 1 in mV</td> </tr>
+    			<tr> <td>0053</td> <td>24V rail input voltage 2 in mV</td> </tr>
+    			<tr> <td>0054</td> <td>24V rail voltage in mV</td> </tr>
+    			<tr> <td>0055</td> <td>24V rail current draw in mA</td> </tr>
+  			</tbody>
+		</table>
+	<a href="#top">Back to Top</a>
+	<hr>
+
+		<h2>VPE-6030 Relay Module</h2>
+		<table class="table table-sm table-responsive table-striped table-hover">
+  			<thead>
+    			<tr> <th scope="col">Address (Dec)</th> <th scope="col">Description</th> </tr>
+  			</thead>
+  			<tbody>
+    			<tr> <td>0049</td> <td>Relay 1 on/off</td> </tr>
+    			<tr> <td>0050</td> <td>Relay 2 on/off</td> </tr>
+    			<tr> <td>0051</td> <td>Relay 3 on/off</td> </tr>
+    			<tr> <td>0052</td> <td>Relay 4 on/off</td> </tr>
+  			</tbody>
+		</table>
+	<a href="#top">Back to Top</a>
+	<hr>
+
+		<h2>VPE-6040 SDAFE Analog Input Module</h2>
+		<table class="table table-sm table-responsive table-striped table-hover">
+  			<thead>
+    			<tr> <th scope="col">Address (Dec)</th> <th scope="col">Description</th> </tr>
+  			</thead>
+  			<tbody>
+    			<tr> <td>0049</td> <td>Sample interval in milliseconds</td> </tr>
+    			<tr> <td>0050</td> <td>Channel 1 reading</td> </tr>
+    			<tr> <td>0051</td> <td>Channel 2 reading</td> </tr>
+     			<tr> <td>0052</td> <td>Channel 3 reading</td> </tr>
+     			<tr> <td>0053</td> <td>Channel 4 reading</td> </tr>
+    			<tr> <td>0054</td> <td>Channel 1 mode (0 = 5V, 1 = 20mA, 2 = 10V)</td> </tr>
+    			<tr> <td>0055</td> <td>Channel 2 mode (0 = 5V, 1 = 20mA, 2 = 10V)</td> </tr>
+    			<tr> <td>0056</td> <td>Channel 3 mode (0 = 5V, 1 = 20mA, 2 = 10V)</td> </tr>
+    			<tr> <td>0057</td> <td>Channel 4 mode (0 = 5V, 1 = 20mA, 2 = 10V)</td> </tr>
+     			<tr> <td>0058</td> <td>Channel 1 counts</td> </tr>
+     			<tr> <td>0059</td> <td>Channel 2 counts</td> </tr>
+     			<tr> <td>0060</td> <td>Channel 3 counts</td> </tr>
+     			<tr> <td>0061</td> <td>Channel 4 counts</td> </tr>
+    			</tbody>
+		</table>
+	<a href="#top">Back to Top</a>
+	<hr>
+
+		<h2>VPE-6050 Analog mA Output Module</h2>
+		<table class="table table-sm table-responsive table-striped table-hover">
+  			<thead>
+    			<tr> <th scope="col">Address (Dec)</th> <th scope="col">Description</th> </tr>
+  			</thead>
+  			<tbody>
+    			<tr> <td>0049</td> <td>Channel 1 output in mA</td> </tr>
+    			<tr> <td>0050</td> <td>Channel 2 output in mA</td> </tr>
+    			<tr> <td>0051</td> <td>Channel 3 output in mA</td> </tr>
+     			<tr> <td>0052</td> <td>Channel 4 output in mA</td> </tr>
+     			<tr> <td>0053</td> <td>Channel 1 mode (0 = source, 1 = sink)</td> </tr>
+    			<tr> <td>0054</td> <td>Channel 2 mode (0 = source, 1 = sink)</td> </tr>
+    			<tr> <td>0055</td> <td>Channel 3 mode (0 = source, 1 = sink)</td> </tr>
+    			<tr> <td>0056</td> <td>Channel 4 mode (0 = source, 1 = sink))</td> </tr>
+    			</tbody>
+		</table>
+	<a href="#top">Back to Top</a>
+	<hr>
+
+		<h2>VPE-6060 Digital Input Module</h2>
+		<table class="table table-sm table-responsive table-striped table-hover">
+  			<thead>
+    			<tr> <th scope="col">Address (Dec)</th> <th scope="col">Description</th> </tr>
+  			</thead>
+  			<tbody>
+    			<tr> <td>0049</td> <td>Sample interval in milliseconds</td> </tr>
+    			<tr> <td>0050</td> <td>Channel 1 reading (low word)</td> </tr>
+    			<tr> <td>0051</td> <td>Channel 1 reading (high word)</td> </tr>
+    			<tr> <td>0052</td> <td>Channel 2 reading (low word)</td> </tr>
+    			<tr> <td>0053</td> <td>Channel 2 reading (high word)</td> </tr>
+    			<tr> <td>0054</td> <td>Channel 3 reading (low word)</td> </tr>
+    			<tr> <td>0055</td> <td>Channel 3 reading (high word)</td> </tr>
+    			<tr> <td>0056</td> <td>Channel 4 reading (low word)</td> </tr>
+    			<tr> <td>0057</td> <td>Channel 4 reading (high word)</td> </tr>
+    			<tr> <td>0058</td> <td>Channel 1 mode (0 = basic/discrete, 1 = frequency, 2 = pulse counter)</td> </tr>
+    			<tr> <td>0059</td> <td>Channel 2 mode (0 = basic/discrete, 1 = frequency, 2 = pulse counter)</td> </tr>
+    			<tr> <td>0060</td> <td>Channel 3 mode (0 = basic/discrete, 1 = frequency, 2 = pulse counter)</td> </tr>
+    			<tr> <td>0061</td> <td>Channel 4 mode (0 = basic/discrete, 1 = frequency, 2 = pulse counter)</td> </tr>
+    			<tr> <td>0062</td> <td>Channel 1 bias (0 = none, 1 = PNP, 2 = NPN)</td> </tr>
+    			<tr> <td>0063</td> <td>Channel 2 bias (0 = none, 1 = PNP, 2 = NPN)</td> </tr>
+    			<tr> <td>0064</td> <td>Channel 3 bias (0 = none, 1 = PNP, 2 = NPN)</td> </tr>
+    			<tr> <td>0065</td> <td>Channel 4 bias (0 = none, 1 = PNP, 2 = NPN)</td> </tr>
+    			<tr> <td>0066</td> <td>Channel 1 polarity (0 = rising edge, 1 = falling edge)</td> </tr>
+    			<tr> <td>0067</td> <td>Channel 2 polarity (0 = rising edge, 1 = falling edge)</td> </tr>
+    			<tr> <td>0068</td> <td>Channel 3 polarity (0 = rising edge, 1 = falling edge)</td> </tr>
+    			<tr> <td>0069</td> <td>Channel 4 polarity (0 = rising edge, 1 = falling edge)</td> </tr>
+   			</tbody>
+		</table>
+	<a href="#top">Back to Top</a>
+	<hr>
+
+		<h2>VPE-6070 Analog Voltage Output Module</h2>
+		<table class="table table-sm table-responsive table-striped table-hover">
+  			<thead>
+    			<tr> <th scope="col">Address (Dec)</th> <th scope="col">Description</th> </tr>
+  			</thead>
+  			<tbody>
+    			<tr> <td>0049</td> <td>Channel 1 output in mV</td> </tr>
+    			<tr> <td>0050</td> <td>Channel 2 output in mV</td> </tr>
+    			<tr> <td>0051</td> <td>Channel 3 output in mV</td> </tr>
+    			<tr> <td>0052</td> <td>Channel 4 output in mV</td> </tr>
+    			</tbody>
+		</table>
+	<a href="#top">Back to Top</a>
+	<hr>
+
+		<h2>VPE-6080 Thermistor Input Module</h2>
+		<table class="table table-sm table-responsive table-striped table-hover">
+  			<thead>
+    			<tr> <th scope="col">Address (Dec)</th> <th scope="col">Description</th> </tr>
+  			</thead>
+  			<tbody>
+    			<tr> <td>0049</td> <td>Sample interval in milliseconds</td> </tr>
+    			<tr> <td>0050</td> <td>Channel 1 reading in Kelvin (scaled by 10)</td> </tr>
+    			<tr> <td>0051</td> <td>Channel 2 reading in Kelvin (scaled by 10)</td> </tr>
+    			<tr> <td>0052</td> <td>Channel 3 reading in Kelvin (scaled by 10)</td> </tr>
+    			<tr> <td>0053</td> <td>Channel 4 reading in Kelvin (scaled by 10)</td> </tr>
+    			<tr> <td>0054</td> <td>Channel 5 reading in Kelvin (scaled by 10)</td> </tr>
+    			<tr> <td>0055</td> <td>Channel 6 reading in Kelvin (scaled by 10)</td> </tr>
+    			<tr> <td>0056</td> <td>Channel 7 reading in Kelvin (scaled by 10)</td> </tr>
+    			<tr> <td>0057</td> <td>Channel 8 reading in Kelvin (scaled by 10)</td> </tr>
+    			<tr> <td>0058</td> <td>Channel 1 enable (0/1)</td> </tr>
+    			<tr> <td>0059</td> <td>Channel 2 enable (0/1)</td> </tr>
+    			<tr> <td>0060</td> <td>Channel 3 enable (0/1)</td> </tr>
+    			<tr> <td>0061</td> <td>Channel 4 enable (0/1)</td> </tr>
+    			<tr> <td>0062</td> <td>Channel 5 enable (0/1)</td> </tr>
+    			<tr> <td>0063</td> <td>Channel 6 enable (0/1)</td> </tr>
+    			<tr> <td>0064</td> <td>Channel 7 enable (0/1)</td> </tr>
+    			<tr> <td>0065</td> <td>Channel 8 enable (0/1)</td> </tr>
+    			<tr> <td>0066</td> <td>Channel 1 beta value</td> </tr>
+   			<tr> <td>0067</td> <td>Channel 2 beta value</td> </tr>
+   			<tr> <td>0068</td> <td>Channel 3 beta value</td> </tr>
+   			<tr> <td>0069</td> <td>Channel 4 beta value</td> </tr>
+   			<tr> <td>0070</td> <td>Channel 5 beta value</td> </tr>
+   			<tr> <td>0071</td> <td>Channel 6 beta value</td> </tr>
+   			<tr> <td>0072</td> <td>Channel 7 beta value</td> </tr>
+   			<tr> <td>0073</td> <td>Channel 8 beta value</td> </tr>
+   			<tr> <td>0074</td> <td>Channel 1 t0 value in Kelvin (scaled by 100)</td> </tr>
+   			<tr> <td>0075</td> <td>Channel 2 t0 value in Kelvin (scaled by 100)</td> </tr>
+   			<tr> <td>0076</td> <td>Channel 3 t0 value in Kelvin (scaled by 100)</td> </tr>
+   			<tr> <td>0077</td> <td>Channel 4 t0 value in Kelvin (scaled by 100)</td> </tr>
+   			<tr> <td>0078</td> <td>Channel 5 t0 value in Kelvin (scaled by 100)</td> </tr>
+   			<tr> <td>0079</td> <td>Channel 6 t0 value in Kelvin (scaled by 100)</td> </tr>
+   			<tr> <td>0080</td> <td>Channel 7 t0 value in Kelvin (scaled by 100)</td> </tr>
+   			<tr> <td>0081</td> <td>Channel 8 t0 value in Kelvin (scaled by 100)</td> </tr>
+   			<tr> <td>0082</td> <td>Channel 1 counts</td> </tr>
+   			<tr> <td>0083</td> <td>Channel 2 counts</td> </tr>
+   			<tr> <td>0084</td> <td>Channel 3 counts</td> </tr>
+   			<tr> <td>0085</td> <td>Channel 4 counts</td> </tr>
+   			<tr> <td>0086</td> <td>Channel 5 counts</td> </tr>
+   			<tr> <td>0087</td> <td>Channel 6 counts</td> </tr>
+   			<tr> <td>0088</td> <td>Channel 7 counts</td> </tr>
+   			<tr> <td>0089</td> <td>Channel 8 counts</td> </tr>
+
+    			</tbody>
+		</table>
+	<a href="#top">Back to Top</a>
+
+	</div>
+
+
+
+	<footer class="page-footer">
+		<div class="container">
+			<hr>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+					<a href="https://www.widgetlords.com">www.widgetlords.com</a>
+					<br>
+					<a href="https://www.vpprocess.com">www.vpprocess.com</a>
+					<br>
+					<a href="mailto:info@widgetlords.com">Contact Us</a>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12" >
+					<img src="../images/wl-logo-small.png" class="rounded mx-auto d-block" width="100" height="100" >
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Widgetlords Electronics</h6>
+					<p>VP Process Inc.
+					<br/>West Kelowna, BC, Canada
+					<br/>info@widgetlords.com
+					<br/>1-250-769-8220
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright text-center">© 2020 Copyright: VP Process Inc.</div>
+	</footer>
+
+<script src="../jquery-3.3.1.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>

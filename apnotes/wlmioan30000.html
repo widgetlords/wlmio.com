@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFCFJVXSX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KFCFJVXSX5');
+</script>
+
+
+    <title>WL-MIO AN-30000</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../main.css">
+	<link rel="icon" href="../images/wl-logo-small.jpg" type="image/x-icon" sizes="16x16" />
+  </head>
+
+<a name="top"></a>
+
+<body>
+<div class="container banner text-center">
+		<h5>WL-MIO Multipurpose I/O Process Controller</h5>
+</div>
+
+<div class="container">
+	<nav class="navbar navbar-expand-lg">
+		<img src="../images/wl-logo-transparent.png"  width="160" height="160" class="img-fluid">
+ 
+		<button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation"> 
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="main-navigation">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="../index.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../description.html">Description</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../configuration.html">Configuration</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../specs.html">Specs</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../applications.html">Applications</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="../about.html">About Us</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+</div>
+
+	<div class="container">
+		<h3 class="text-center">Application Note: WL-MIO-AN-30000</h3>
+		<hr>
+<!-- 		<h4>WL-MIO Introduction 	</h4>  -->
+		<!-- h4>Part No.: VPE-6010-C</h4> -->
+		<h4>WL-MIO Software Introduction</h4>
+		<br>
+
+		<img src="../images/6000-c-e-1024.jpg" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width=40%" height="auto" /> 
+		<br>
+
+		<p>This application note describes how to install the "wlmio" library.</p>
+
+		<h4>Step 1  </h4>
+		<p>Download library from <a href="https://github.com/widgetlords/libwlmio/releases/latest">https://github.com/widgetlords/libwlmio/releases/latest
+ </a>   </p>
+
+		<p>Source code for the library can be found <a href="https://github.com/widgetlords/libwlmio">here </a> </p>
+
+		<h4>Step 2  </h4>
+		<p>Intall with: </p>
+		<pre>sudo dpkg -i libwlmio-1.0.0-1-armhf.deb
+		</pre>
+	
+		<p><strong>NOTE: </strong>It is recommended the installation is done using the VPE-6020 or VPE-6020-H Carrier Card. The carrier cards have an eeprom that sets up the Raspberry Pi dtoverlays.  </p>
+
+
+		<h4>Step 3  </h4>
+		<p>Change CPU governor to decrease system latency (optional): </p>
+		<pre>echo performance | sudo tee /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+		</pre>
+
+		<h4>Step 4  </h4>
+		<p>Bring CAN interface down for configuration: </p>
+		<pre>sudo ip link set can0 down
+		</pre>
+
+		<h4>Step 5  </h4>
+		<p>Configure CAN interface: </p>
+		<pre>sudo ip link set can0 type can bitrate 500000 dbitrate 2000000 fd on sample-point 0.80 dsample-point 0.80 berr-reporting on restart-ms 100
+		</pre>
+
+		<h4>Step 6  </h4>
+		<p>Bring up CAN interface: </p>
+		<pre>sudo ip link set can0 up
+		</pre>
+
+		<h4>Step 7  </h4>
+		<p>Run the "monitor" program from the terminal. </p>
+
+	<p>As long as one or more modules are connected there should now be some output on the terminal.  </p>
+	<p>Note that steps 3-6 must be repeated on each power-up. These can be scripted as part of your application's startup or via systemd.  </p>
+
+	<p>The individual Software Application Notes available for each module provide sample PYTHON code under "Applications" Menu.
+		</p>
+	<a href="#top">Back to Top</a>
+
+	</div>
+
+
+
+	<footer class="page-footer">
+		<div class="container">
+			<hr>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+					<a href="https://www.widgetlords.com">www.widgetlords.com</a>
+					<br>
+					<a href="https://www.vpprocess.com">www.vpprocess.com</a>
+					<br>
+					<a href="mailto:info@widgetlords.com">Contact Us</a>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12" >
+					<img src="../images/wl-logo-small.png" class="rounded mx-auto d-block" width="100" height="100" >
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Widgetlords Electronics</h6>
+					<p>VP Process Inc.
+					<br/>West Kelowna, BC, Canada
+					<br/>info@widgetlords.com
+					<br/>1-250-769-8220
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright text-center">© 2020 Copyright: VP Process Inc.</div>
+	</footer>
+
+<script src="../jquery-3.3.1.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>

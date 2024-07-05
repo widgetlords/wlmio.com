@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFCFJVXSX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KFCFJVXSX5');
+</script>
+
+
+    <title>WL-MIO AN-30210</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../main.css">
+	<link rel="icon" href="../images/wl-logo-small.jpg" type="image/x-icon" sizes="16x16" />
+  </head>
+
+<a name="top"></a>
+
+<body>
+<div class="container banner text-center">
+		<h5>WL-MIO Multipurpose I/O Process Controller</h5>
+</div>
+
+<div class="container">
+	<nav class="navbar navbar-expand-lg">
+		<img src="../images/wl-logo-transparent.png"  width="160" height="160" class="img-fluid">
+ 
+		<button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation"> 
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="main-navigation">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="../index.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../description.html">Description</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../configuration.html">Configuration</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../specs.html">Specs</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../applications.html">Applications</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="../about.html">About Us</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+</div>
+
+	<div class="container">
+		<h3 class="text-center">Application Note: WL-MIO-AN-30210</h3>
+		<hr>
+		<h1 class="text-center">WL-MIO Modbus RTU RS485 Gateway</h1>
+		<br>
+
+		<img src="../images/wl-mio-front-2048.png" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width=40%" height="auto" /> 
+		<br>
+
+		<p>The WL-MIO Modbus RTU RS485 Port is located on the VPE-6020 Carrier Module. This port gives the WL-MIO access to any Modbus RTU RS485 enabled instrument or device. The connections for the RS85 interface is shown in the connection diagram where the VPE-6020 is located:</p>
+	</div>
+
+		</div>
+			<img src="../images/field/field-6020.png" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width="60%" height="auto" /> 
+		</div>
+
+	<div class="container">
+		<p>The RS485 connections are located on terminal blocks 1 (Common), 2 (Data B) and 3 (Data A). </p>
+
+		<p>This application note describes how to install and use the WL-MIO Modbus RTU RS485 Interface. <br>
+		<strong>NOTE:</strong> All examples use the minimalmodbus.py program.</p>
+
+		<p>In the Widgetlords Electronics product lines that include a RS485 driver, the direction whether Receive or Transmit is controlled directly via a GPIO line. Most programs available such as libmodbus or minimalmodbus for the Raspberry Pi assume the direction control is performed by the RS845 driver circuit. Typically this would be done by a 555 timer, a FTDI chip or similar circuit.</p>
+
+		<p>The driver chip used in our circuits is the standard half duplex RS485 chip, the Texas Instrument SN65HVD75D or equivalent. </p>
+
+		<p>The /RE and DE lines are tied together, when set high the transceiver is in receive mode, when set low, the transceiver is in transmit mode. </p>
+
+		<p>Userspace application code normally drives the direction bit of the RS845 transceiver. However, when using Modbus application libraries that do not have direct access to the direction control GPIO line, we have come up with a solution. </p>
+
+		<p>We have available an executable program that runs in the background which takes over the serial port and automatically controls the direction control for all standard baud rates. This program has been tested with minimalmodbus and Node-Red. </p>
+
+		<p>The program is called "modbusd" and can be downloaded here: </p>
+
+		<a href="modbusd">Download the executable file "modbusd"</a>
+		<p></p>
+
+
+		<h2>Step 1</h2>
+		<p>Ensure libwlmio is installed and configured as shown in the application note: <a href="wlmioan30000.html">WL-MIO AN-30000 </a> </p>	
+
+		<h2>Step 2</h2>
+		<p>Install the gpiod2 library</p>	
+		<pre>sudo apt install libgpiod2</pre>
+
+		<h2>Step 3</h2>
+		<p>Load the "modbusd" executable program into a file folder or desktop. </p>	
+
+		<h2>Step 4</h2>
+		<p>In the RPi config, ensure the uart is enabled.  </p>	
+
+		<h2>Step 5</h2>
+		<p>In the RPi config, ensure the serial console is disabled.  </p>	
+
+		<h2>Step 6</h2>
+		<p>Change the permissions for the modbusd program: </p>	
+		<pre>chmod +x modbusd</pre>
+
+		<h2>Step 7</h2>
+		<p>For help, run: </p>	
+		<pre>./modbusd --help</pre>
+
+		<p>-d, --driver=GPIO GPIO pin used for transmit enable<br>
+-s, --stty=FILE Specify serial TTY<br>
+-v, --vtty=FILE Specify virtual TTY<br>
+-?, --help Give this help list<br>
+--usage Give a short usage message</p>
+
+		<h2>Step 8</h2>
+		<p>For applications using Modbus RS485 (including Node-Red) and Widgetlords products, run in the background the program: </p>	
+		<pre>./modbusd</pre>
+
+		<p>This will create the "/tmp/modbus" program that controls the GPIO Direction Control Pin automatically.</p>
+
+
+
+
+
+		<h2>Applications</h2>
+		<p>This method works equally well with libmodbus or minimalmodbus </p>	
+
+		<h2>Using minimalmodbus-1.0.2</h2>
+		<p>The following code example assumes the end user has gone thru and understands the minimalmodbus documentation.</p>
+
+		<p>This code example use the VP-EC-RDU-MINI Modbus RTU RS485 LCD Display as a test unit.</p>
+
+		<pre>
+#Read and Write values from the VP-EC-RDU-MINI LCD Display via Modbus RTU RS485
+
+from time import sleep
+import minimalmodbus
+
+rdu = minimalmodbus.Instrument('/tmp/modbus', 100)  		# port name, slave address (in decimal)
+rdu.serial.baudrate = 19200
+
+while True:
+    
+    temperature = str(rdu.read_register(50)/100)		# Read temperature value (Scaled x 100) from Register 50
+    pushbuttons = str(rdu.read_register(58))			# Read Pushbutton values from Register 58
+
+    rdu.write_string(0,  " Hello WL-MIO World ", 10)		# Write LCD Line 1
+    rdu.write_string(10, " Temperature        ", 10)		# Write LCD Line 2
+    rdu.write_string(20, " " + temperature + " Deg C", 10)	# Write LCD Line 3
+    rdu.write_string(30, " Pushbuttons = " + pushbuttons, 10)	# Write LCD Line 4
+    
+    sleep(.5)
+   
+		</pre>
+
+
+
+	<a href="#top">Back to Top</a>
+	</div>
+
+
+
+
+	<footer class="page-footer">
+		<div class="container">
+			<hr>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+					<a href="https://www.widgetlords.com">www.widgetlords.com</a>
+					<br>
+					<a href="https://www.vpprocess.com">www.vpprocess.com</a>
+					<br>
+					<a href="mailto:info@widgetlords.com">Contact Us</a>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12" >
+					<img src="../images/wl-logo-small.png" class="rounded mx-auto d-block" width="100" height="100" >
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Widgetlords Electronics</h6>
+					<p>VP Process Inc.
+					<br/>West Kelowna, BC, Canada
+					<br/>info@widgetlords.com
+					<br/>1-250-769-8220
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright text-center">© 2020 Copyright: VP Process Inc.</div>
+	</footer>
+
+<script src="../jquery-3.3.1.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>

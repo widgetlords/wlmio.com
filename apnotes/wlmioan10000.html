@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFCFJVXSX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KFCFJVXSX5');
+</script>
+
+
+    <title>WL-MIO AN-10000</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../main.css">
+	<link rel="icon" href="../images/wl-logo-small.jpg" type="image/x-icon" sizes="16x16" />
+  </head>
+
+<a name="top"></a>
+
+<body>
+<div class="container banner text-center">
+		<h5>WL-MIO Multipurpose I/O Process Controller</h5>
+</div>
+
+<div class="container">
+	<nav class="navbar navbar-expand-lg">
+		<img src="../images/wl-logo-transparent.png"  width="160" height="160" class="img-fluid">
+ 
+		<button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation"> 
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="main-navigation">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="../index.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../description.html">Description</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../configuration.html">Configuration</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../specs.html">Specs</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../applications.html">Applications</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="../about.html">About Us</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+</div>
+
+	<div class="container">
+		<h3 class="text-center">Application Note: WL-MIO-AN-10000</h3>
+		<hr>
+		<h4>System Application Notes	</h4>
+		<br>
+		<h4>Introduction</h4>
+		<br>
+		
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-12"  >
+				<img src="../images/6000-c-e-1024.jpg" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width="100%" height="auto" /> 
+			</div>
+			
+			<div class="col-lg-4 col-md-4 col-sm-12"  >
+				<img src="../images/6000-c-e-n-1024.jpg" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width="100%" height="auto" /> 	
+			</div>
+		</div>
+
+		<br>
+
+		<p>Application notes are intended to describe <strong>“How 2 Begin”</strong>  a WL-MIO Process Controller solution with the necessary basic WL-MIO components, infrastructure provisions, support equipment, and programming environment required to achieve an operational automated control system.  The following topics comprise the scope of System Application Notes:</p>
+
+		<ul>
+    			<li><a href="#system_requirements">System Requirements</a></li>
+			<li><a href="#backplane">Backplane</a></li>
+			<li><a href="#power">Processor and Bus and Power Supply</a></li>
+			<li><a href="#processor">Processor Module</a></li>
+			<li><a href="#software">Software</a></li>
+		</ul>
+
+	</div>
+
+	<div class="container">
+		<a name="system_requirements"></a>
+		<h5>System Requirements</h5>
+		<p>A WL-MIO Process Controller Solution requires the following:</p>
+		<ul>
+			<li>A minimum of 8.25 in (209.6 mm) of  IEC 60715 DIN rail length
+				<ul>				
+				<li>DIN rail depth supported: 0.3 in (7.5 mm) or 0.6 in (15 mm)</li>			
+				</ul>
+			</li>
+				
+			<li>Unit volume of: 167.5 cu in (2,744.4 cu cm) 
+				<ul>				
+				<li>8.25 in (209.6 mm) Length x 5.8 in (147.3 mm) Width x 3.5 in (88.9 mm) Height</li>			
+				</ul>
+			</li>
+			<li>Customer furnished 24 VDC, 4 A power supply (minimum)
+				<ul>				
+				<li>Capacity dependent on the desired power design for the total system</li>
+					<ul>
+						<li>Reference individual module specifications for power resource planning  </li>
+					</ul>			
+				</ul>
+			</li>
+			<li>Ethernet network port and cable for WL-MIO Processor Module  </li>
+			<li>Terminal Block connection solid or stranded wire size 12 – 28 AWG (4 mm2 – 0.08 mm2 ) wire   </li>
+			<li>Equipment to access WL-MIO Processor module   
+				<ul>				
+				<li>Computer with Ethernet network, SSH capable program</li>			
+				</ul>
+					<ul>				
+					<li>I/O peripherals connected to WL-MIO Processor Module (Raspberry Pi 4)
+						<ul>
+						<li>High definition 1920 x 1080 computer display with digital video port (HDMI or DisplayPort)  </li>
+						<li>HDMI video cable with a minimum of one HDMI male connector<br>
+						Other HDMI video connector to mate with computer display input (HDMI or DisplayPort) </li>
+						<li>USB Keyboard  </li>
+						<li>USB Mouse  </li>
+						</ul>			
+								
+					<i>Note: Connecting I/O peripherals to WL-MIO processor module requires Backplane Enclosure covers to be removed.  </i>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	
+	<a href="#top">Back to Top</a>
+	<hr>
+	</div>
+
+	<div class="container">
+		<a name="backplane"></a>
+		<h5>VPE-6000 Backplane</h5>
+		<p>At the heart of the WL-MIO is the 8 position backplane. Any module may be located in any slot position. A programming address (Module ID) for each module position is automatically detected when a module is inserted into the backplane.  The Module ID (reference VPE-6000, Backplane specification for address identification) is determined by the backplane jumper configuration and inserted module position on the backplane itself. Up to 16 backplanes (unique ID's) are available.  Connecting multiple backplanes together for a WL-MIO Process Controller solution enables a CAN BUS capacity of 127 WL-MIO modules that are individually programmable. </p>
+
+		<img src="../images/pcb/6000-c-n-1024.jpg" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width="60%" height="auto" >
+
+		<p>Functions of the VP-6000 Backplane are:
+		<ul>
+			<li>Provides backplane and module programming address configuration via 4 position jumper block</li>
+			<li>Capacity of up to 8 WL-MIO modules that may be inserted into any position</li>
+			<li>Enables "Hot Swapping" of modules with orientation guides for positive module insertions
+				<ul> 
+				<li>Module replacement performed without disrupting I/O wiring.  </li>
+				</ul>
+			</li>
+
+			<li>Colored terminal blocks associated with each module position enables ease of associating module position to I/O device wiring position</li>
+			<li>Each module position supports: 
+				<ul>
+				<li>up to 12 terminal connections as defined by each WL-MIO module   </li>
+				<li>up to 3 terminal connections for ground  </li>
+				</ul>
+			</li>
+			<li>CAN bus and bus power terminals for connecting multiple backplanes.</li>
+			<li>Connection to external 5 VDC power supply for processor and module bus power when internal Processor and Bus Power Supply (VPE-6010)</li>
+		</ul>
+
+		</p>
+
+	<a href="#top">Back to Top</a>
+	<hr>
+	</div>
+
+	<div class="container">
+		<a name="power"></a>
+		<h5>Processor and Module Bus Power Supply</h5>
+		<p>All WL-MIO modules use 5 VDC power for operation.  VPE-6010, Power Supply 5 VDC Module, provides an integrated and redundant capability for the WL-MIO Processor Controller solution.  Primary power via an external 24 VDC is required for power input through the terminal connectors associated with location of the backplane module position where the VPE-6010, Power Supply 5 VDC Module, is inserted.  There are two primary power inputs to enable enhanced continuity of operations should one primary power fail.</p>
+
+		<p>Functions of the VPE-6010 Power Supply are:
+		<ul>
+			<li>Capacity of up to any combination of 15 WL-MIO modules (12 WL-MIO when Processor Modules are installed.)</li>
+			<li>More than one VPE-6010, Power Supply 5 VDC Module, adds processor and module bus power redundancy and improves continuity of operations</li>
+			<li>Input and output power (voltage and current) are monitored for system management of the WL-MIO Processor Control solution</li>
+			<li>Status indicator</li>
+		</ul>
+		</p>
+
+	<a href="#top">Back to Top</a>
+	<hr>
+	</div>
+
+	<div class="container">
+		<a name="processor"></a>
+		<h5>Processor Module</h5>
+		<p>The WL-MIO processor module adapts the industry accepted <a href=" https://www.raspberrypi.org/products/raspberry-pi-4-model-b/specifications/?resellerType=home">Raspberry Pi 4 Model B</a> mounted to WL-MIO carrier module to provide the processing capability for the WL-MIO Processor Controller.
+		</p>
+		<p>RS-485 and HART external communication functions are available for the WL-MIO Processor Controller solution.  RS-485, and RS-485 plus HART are the two module options for external communications.
+		</p>
+
+		<img src="../images/pcb/rpi4-b-2mb-1024.jpg" class="rounded mx-auto d-block" class="img-responsive" alt="Responsive image" width="60%" height="auto" >
+
+		<br>		
+		<p>Two WL-MIO modules without Raspberry Pi 4 Module B modules offers system flexibility in utilizing the total Raspberry Pi product offerings that fit the mechanical and electrical interfaces.
+		<ul>
+			<li>VPE-6020 Raspberry Pi Carrier module c/w RS485 (RPi 4 NOT included))</li>
+			<li>VPE-6020-H Raspberry Pi Carrier module c/w RS485 & HART (RPi 4 NOT included)</li>
+		</ul>
+		Two WL-MIO processor kits combine the WL-MIO carrier with a Raspberry Pi 4 Module B configured with 2 GB RAM and 16 GB SD card.
+		<br>
+		<br>
+		<ul>
+			<li>VPE-6025 Raspberry Pi 4 Processor Kit & RS-485 
+				<ul>
+				<li>(c/w RPi 4, SD Card & “libwlmio” library
+				</li>
+				</ul>
+			</li>
+			<li>VPE-6025-H Raspberry Pi Carrier module c/w RS485 & HART
+				<ul>
+				<li>(c/w RPi 4, SD Card  & “libwlmio” library)
+				</li>
+				</ul>
+
+			</li>
+		</ul>
+		WL-MIO Processor Controller provides external access to the Raspberry Pi 4 Ethernet and USB ports on the side opposite to the I/O device wiring terminal blocks.  Other Raspberry Pi interfaces  (e.g. SD card, video, audio) are accessible with covers removed.
+	
+		</p>
+
+	<a href="#top">Back to Top</a>
+	<hr>
+	</div>
+	
+	<div class="container">
+		<a name="software"></a>
+		<h5>Software</h5>
+		<p>The programming environment for the WL-MIO Process Controller leverages the same as Raspberry Pi 4. To begin programming WL-MIO Process Controller, reference the Raspberry PI 4 documentation for configuring, and establishing the environment.
+		</p>
+		<p>At the heart of the WL-MIO Processor Controller software is the "libwlmio" library. An open source library available from the GitHub repository 			Widgetlords.</p>
+		<p>The processor kits come with the software pre-installed on the provided SD card.  </p>
+		<p>The libwlmio library contains the following modules:
+		<ul>
+			<li>"C" Code and header files</li>
+			<li>"C" demo code and helper files</li>
+			<li>Python wrappers</li>
+			<li>Python demo code for each type of module</li>
+		</ul>
+		</p>
+		<p>The individual Software Application Notes available for each module provide sample PYTHON code under "Applications" Menu.
+		</p>
+
+	<a href="#top">Back to Top</a>
+	</div>
+
+
+
+	<footer class="page-footer">
+		<div class="container">
+			<hr>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+					<a href="https://www.widgetlords.com">www.widgetlords.com</a>
+					<br>
+					<a href="https://www.vpprocess.com">www.vpprocess.com</a>
+					<br>
+					<a href="mailto:info@widgetlords.com">Contact Us</a>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12" >
+					<img src="../images/wl-logo-small.png" class="rounded mx-auto d-block" width="100" height="100" >
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h6 class="text-uppercase font-weight-bold">Widgetlords Electronics</h6>
+					<p>VP Process Inc.
+					<br/>West Kelowna, BC, Canada
+					<br/>info@widgetlords.com
+					<br/>1-250-769-8220
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright text-center">© 2020 Copyright: VP Process Inc.</div>
+	</footer>
+
+<script src="../jquery-3.3.1.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>
